@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav>
+    {% if current_user.is_authenticated %}
+        <p>welcome {{ current_user.username }}</p>
+        <b>{{ current_user.prettier_budget }}</b>
+        <a href="/logout">logout</a>
+    {% else %}
+        <a href="/register">register</a>
+        <a href="/login">login</a>
+    {% endif %}
+</nav>
+<h1>Market</h1>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+                <button>More Info</button>
+                <button>Purchase</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
